@@ -19,9 +19,8 @@
         }
     },
     "require": {
-        "mez/queuejitsu": "dev-master",
-        "mez/queuejitsu-cli": "dev-master",
-        "mez/queuejitsu-scheduler": "dev-master",
+        "mez/queuejitsu-cli": "^0.1",
+        "mez/queuejitsu-scheduler": "^0.1",
         "symfony/console": "^3.3",
         "zendframework/zend-config-aggregator": "^1.0",
         "zfcampus/zf-development-mode": "^3.1"
