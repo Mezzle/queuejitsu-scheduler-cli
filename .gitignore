@@ -1,0 +1,6 @@
+/vendor/
+/composer.lock
+/sonar-project.properties
+/.php_cs.cache
+/config/autoload/*.local.php
+/config/development.config.php
