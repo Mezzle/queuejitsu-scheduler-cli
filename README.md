@@ -1,6 +1,8 @@
 # QueueJitsu Scheduler CLI
 
 [![Build Status](https://travis-ci.org/Mezzle/queuejitsu-scheduler-cli.svg?branch=master)](https://travis-ci.org/Mezzle/queuejitsu-scheduler-cli)
+[![Code Climate](https://codeclimate.com/github/Mezzle/queuejitsu-scheduler-cli/badges/gpa.svg)](https://codeclimate.com/github/Mezzle/queuejitsu-scheduler-cli)
+[![Test Coverage](https://codeclimate.com/github/Mezzle/queuejitsu-scheduler-cli/badges/coverage.svg)](https://codeclimate.com/github/Mezzle/queuejitsu-scheduler-cli/coverage)
 
 CLI for QueueJitsu Scheduler
 
