@@ -73,7 +73,7 @@ class Scheduler extends Command
      * @throws \QueueJitsu\Exception\ForkFailureException
      * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         if ($input->getOption('background')) {
             $this->workInBackground($input);
@@ -98,9 +98,11 @@ class Scheduler extends Command
     {
         $pid = pcntl_fork();
 
-        if ($pid == -1) {
+        if ($pid === -1) {
             die('Could not fork worker');
-        } elseif (!$pid) {
+        }
+
+        if (!$pid) {
             $pidfile = $input->getOption('pidfile');
             if ($pidfile) {
                 $this->writePidFile($pidfile);
@@ -136,7 +138,7 @@ class Scheduler extends Command
      * writePidFile
      *
      * @param string $pidfile
-     * @param null $pid
+     * @param null|int $pid
      */
     private function writePidFile(string $pidfile, $pid = null)
     {

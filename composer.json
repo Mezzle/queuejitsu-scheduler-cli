@@ -21,6 +21,7 @@
     "require": {
         "mez/queuejitsu-cli": "^0.1",
         "mez/queuejitsu-scheduler": "^0.2",
+        "roave/security-advisories": "dev-master",
         "symfony/console": "^3.3",
         "zendframework/zend-config-aggregator": "^1.0",
         "zfcampus/zf-development-mode": "^3.1"
