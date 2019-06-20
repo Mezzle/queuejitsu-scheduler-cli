@@ -105,7 +105,7 @@ class Scheduler extends Command
         }
 
         if (!$pid) {
-            $pidfile = $input->getOption('pidfile');
+            $pidfile = (string)$input->getOption('pidfile');
 
             if ($pidfile) {
                 $this->writePidFile($pidfile);
@@ -127,7 +127,7 @@ class Scheduler extends Command
      */
     private function workInForeground(InputInterface $input)
     {
-        $pidfile = $input->getOption('pidfile');
+        $pidfile = (string)$input->getOption('pidfile');
 
         if ($pidfile) {
             $this->writePidFile($pidfile);

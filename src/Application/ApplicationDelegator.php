@@ -21,7 +21,7 @@ class ApplicationDelegator
      * __invoke
      *
      * @param \Psr\Container\ContainerInterface $container
-     * @param $name
+     * @param string $name
      * @param callable $callback
      *
      * @throws \Psr\Container\ContainerExceptionInterface
@@ -30,7 +30,7 @@ class ApplicationDelegator
      *
      * @return \Symfony\Component\Console\Application
      */
-    public function __invoke(ContainerInterface $container, $name, callable $callback)
+    public function __invoke(ContainerInterface $container, string $name, callable $callback)
     {
         /** @var \Symfony\Component\Console\Application $app */
         $app = $callback();
