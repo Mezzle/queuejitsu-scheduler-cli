@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @copyright (c) 2017 Stickee Technology Limited
  */
@@ -22,11 +24,11 @@ class ApplicationDelegator
      * @param $name
      * @param callable $callback
      *
-     * @return \Symfony\Component\Console\Application
-     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
      * @throws \Symfony\Component\Console\Exception\LogicException
+     *
+     * @return \Symfony\Component\Console\Application
      */
     public function __invoke(ContainerInterface $container, $name, callable $callback)
     {

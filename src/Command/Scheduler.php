@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @copyright (c) 2017 Stickee Technology Limited
  */
@@ -33,7 +35,6 @@ class Scheduler extends Command
 
     /**
      * configure
-     *
      */
     protected function configure()
     {
@@ -69,9 +70,10 @@ class Scheduler extends Command
      * @param \Symfony\Component\Console\Input\InputInterface $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      *
-     * @return int
      * @throws \QueueJitsu\Exception\ForkFailureException
      * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
+     *
+     * @return int
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
@@ -104,6 +106,7 @@ class Scheduler extends Command
 
         if (!$pid) {
             $pidfile = $input->getOption('pidfile');
+
             if ($pidfile) {
                 $this->writePidFile($pidfile);
             }
@@ -125,6 +128,7 @@ class Scheduler extends Command
     private function workInForeground(InputInterface $input)
     {
         $pidfile = $input->getOption('pidfile');
+
         if ($pidfile) {
             $this->writePidFile($pidfile);
         }

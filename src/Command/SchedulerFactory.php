@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @copyright (c) 2017 Stickee Technology Limited
  */
@@ -20,10 +22,10 @@ class SchedulerFactory
      *
      * @param \Psr\Container\ContainerInterface $container
      *
-     * @return \QueueJitsu\Scheduler\Cli\Command\Scheduler
-     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
+     *
+     * @return \QueueJitsu\Scheduler\Cli\Command\Scheduler
      */
     public function __invoke(ContainerInterface $container)
     {

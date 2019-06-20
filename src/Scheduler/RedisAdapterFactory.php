@@ -1,4 +1,6 @@
 <?php
+
+declare(strict_types=1);
 /**
  * @copyright (c) 2017 Stickee Technology Limited
  */
@@ -16,14 +18,15 @@ class RedisAdapterFactory
      *
      * @param \Psr\Container\ContainerInterface $container
      *
-     * @return \QueueJitsu\Scheduler\Adapter\RedisAdapter
-     *
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \Psr\Container\NotFoundExceptionInterface
+     *
+     * @return \QueueJitsu\Scheduler\Adapter\RedisAdapter
      */
     public function __invoke(ContainerInterface $container)
     {
         $client = $container->get(Client::class);
+
         return new RedisAdapter($client);
     }
 }
