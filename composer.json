@@ -10,6 +10,7 @@
     }
   ],
   "require": {
+    "php": "^7.2",
     "ext-pcntl": "*",
     "mez/queuejitsu-cli": "^0.1.6",
     "mez/queuejitsu-scheduler": "^0.2.2",
