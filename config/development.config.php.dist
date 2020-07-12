@@ -33,6 +33,7 @@ return [
             LoggerInterface::class => \QueueJitsu\Cli\Log\StdIO::class,
         ],
         'factories' => [
+            \QueueJitsu\Scheduler\Adapter\AdapterInterface::class => \QueueJitsu\Scheduler\Cli\Scheduler\RedisAdapterFactory::class,
             \QueueJitsu\Job\Adapter\AdapterInterface::class => \QueueJitsu\Cli\Job\RedisAdapterFactory::class,
             \QueueJitsu\Worker\Adapter\AdapterInterface::class => \QueueJitsu\Cli\Worker\RedisAdapterFactory::class,
             \QueueJitsu\Queue\Adapter\AdapterInterface::class => \QueueJitsu\Cli\Queue\RedisAdapterFactory::class,
