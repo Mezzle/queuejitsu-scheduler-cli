@@ -1,4 +1,26 @@
 <?php
+/*
+ * Copyright (c) 2017 - 2020 Martin Meredith
+ * Copyright (c) 2017 Stickee Technology Limited
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 declare(strict_types=1);
 /**
@@ -36,7 +58,7 @@ class Scheduler extends Command
     /**
      * configure
      */
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription('Runs Scheduler');
         $this->setHelp('This command starts a worker to run the scheduling;');
@@ -96,7 +118,7 @@ class Scheduler extends Command
      * @throws \QueueJitsu\Exception\ForkFailureException
      * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
-    private function workInBackground(InputInterface $input)
+    private function workInBackground(InputInterface $input): void
     {
         $pid = pcntl_fork();
 
@@ -105,7 +127,8 @@ class Scheduler extends Command
         }
 
         if (!$pid) {
-            $pidfile = (string)$input->getOption('pidfile');
+            /** @var string $pidfile */
+            $pidfile = $input->getOption('pidfile');
 
             if ($pidfile) {
                 $this->writePidFile($pidfile);
@@ -113,7 +136,9 @@ class Scheduler extends Command
 
             $scheduler = $this->worker;
 
-            $scheduler($input->getOption('interval'));
+            /** @var string $interval */
+            $interval = $input->getOption('interval');
+            $scheduler((int)$interval);
         }
     }
 
@@ -125,9 +150,10 @@ class Scheduler extends Command
      * @throws \QueueJitsu\Exception\ForkFailureException
      * @throws \Symfony\Component\Console\Exception\InvalidArgumentException
      */
-    private function workInForeground(InputInterface $input)
+    private function workInForeground(InputInterface $input): void
     {
-        $pidfile = (string)$input->getOption('pidfile');
+        /** @var string $pidfile */
+        $pidfile = $input->getOption('pidfile');
 
         if ($pidfile) {
             $this->writePidFile($pidfile);
@@ -135,7 +161,9 @@ class Scheduler extends Command
 
         $scheduler = $this->worker;
 
-        $scheduler($input->getOption('interval'));
+        /** @var string $interval */
+        $interval = $input->getOption('interval');
+        $scheduler((int)$interval);
     }
 
     /**
@@ -144,12 +172,16 @@ class Scheduler extends Command
      * @param string $pidfile
      * @param null|int $pid
      */
-    private function writePidFile(string $pidfile, $pid = null)
+    private function writePidFile(string $pidfile, $pid = null): void
     {
         if (is_null($pid)) {
             $pid = getmypid();
         }
 
-        file_put_contents($pidfile, $pid) || die(sprintf('Could not write PID information to %s', $pidfile));
+        $ret = file_put_contents($pidfile, $pid);
+
+        if (!$ret) {
+            die(sprintf('Could not write PID information to %s', $pidfile));
+        }
     }
 }
