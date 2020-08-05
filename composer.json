@@ -24,7 +24,7 @@
     "laminas/laminas-servicemanager": "^3.4",
     "nikic/php-parser": "^4.6",
     "php-parallel-lint/php-parallel-lint": "^1.2",
-    "phpro/grumphp-shim": "^0.19.1",
+    "phpro/grumphp-shim": "^0.19.1 || ^0.20.0",
     "phpstan/phpstan": "^0.12.32",
     "predis/predis": "^1.1",
     "roave/security-advisories": "dev-master",
